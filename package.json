@@ -1,0 +1,24 @@
+{
+  "name": "dota2herorandomgen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^2.0.1",
+    "react": "^15.4.2",
+    "react-autocomplete": "^1.4.2",
+    "react-bootstrap": "^0.30.8",
+    "react-center": "^1.1.1",
+    "react-dom": "^15.4.2",
+    "react-select": "^0.9.1",
+    "react-transitions": "0.0.2",
+    "underscore": "^1.8.3"
+  }
+}
