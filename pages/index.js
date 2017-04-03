@@ -1,8 +1,13 @@
 import heroes from '../data/herodata.json';
 import Head from 'next/head';
 import heroService from '../service/heroService';
+import config from '../config.js';
 import { Button, Collapse, Well, Checkbox, FormGroup, Grid, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
+import ReactGA from 'react-ga';
+
+const IS_SERVER = typeof window === 'undefined';
+const IS_BROWSER = !IS_SERVER;
 
 export default class extends React.Component {
     static async getInitialProps () {
@@ -20,6 +25,29 @@ export default class extends React.Component {
         }
     }
 
+    logEvent(eventName) {
+      if (IS_BROWSER) {
+        switch (eventName) {
+          case 'randomize':
+            ReactGA.event({
+              category: 'user',
+              action: 'randomize',
+              label: 'Click Randomizing Hero Button'
+            });
+            break;
+          case 'adv_opts':
+            ReactGA.event({
+              category: 'user',
+              action: 'adv_opts',
+              label: 'Click Advanced Options Button'
+            });
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
     constructor (props) {
         super(props)
         this.state = {
@@ -35,9 +63,14 @@ export default class extends React.Component {
             ranged: false,
           }
         }
+
+        if (IS_BROWSER) {
+          ReactGA.initialize(config.GA_ID);
+        }
     }
 
     randomize() {
+      this.logEvent('randomize');
       const attr = [];
       const atk = [];
 
@@ -79,7 +112,12 @@ export default class extends React.Component {
           <a href={ 'http://howdoiplay.com/?' + hero.displayname}>How to play { hero.displayname }</a>
           <br/><br/>
           <Button onClick={() => { this.randomize() }} bsStyle="primary">Generate another</Button>{'  '}
-          <Button onClick={() => { this.setState({ optionOpen: !!!this.state.optionOpen }) }} >Advanced options</Button>
+          <Button onClick={() => {
+              if (!this.state.optionOpen) {
+                this.logEvent('adv_opts');
+              }
+              this.setState({ optionOpen: !!!this.state.optionOpen });
+            }} >Advanced options</Button>
           <br/><br/>
           <Grid>
             <Row>
