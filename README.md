@@ -8,4 +8,4 @@ npm run dev
 ```
 
 # Demo
-https://dota2herorandomgen-eazvakarfg.now.sh
+https://dota2herorandomgen-chrefetawe.now.sh
