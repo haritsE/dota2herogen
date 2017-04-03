@@ -1,7 +1,7 @@
 import heroes from '../data/herodata.json';
 import Head from 'next/head';
 import heroService from '../service/heroService';
-import config from '../config.js';
+import config from '../config';
 import { Button, Collapse, Well, Checkbox, FormGroup, Grid, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
 import ReactGA from 'react-ga';
