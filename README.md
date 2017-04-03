@@ -1,5 +1,5 @@
 # Summary
-Random DOTA 2 Hero Generator.
+Random DOTA 2 Hero Generator, made with Next.js.
 
 # How to use
 ```shell
